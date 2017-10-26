@@ -13,9 +13,9 @@ public class Item {
         this.price = price;
         this.image = image;
     }
-     
-    public Base64 convertImageToBase64(){
-        
-        return null;
+    
+    @Override
+    public String toString(){
+        return (name + "\n" + price + "\n");
     }
 }
