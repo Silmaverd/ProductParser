@@ -1,15 +1,18 @@
 package productparser;
 
 import java.awt.Image;
+import java.awt.image.RenderedImage;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Base64;
 import javax.imageio.ImageIO;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.xml.bind.DatatypeConverter;
 
 public class ImageConverter {
     
@@ -46,8 +49,26 @@ public class ImageConverter {
         }
     }
     
-    public static Base64 convertImageToBase64(Image image){
-        
-        return null;
+    public static String convertImageToBase64String(Image image) throws IOException{
+        String encoded = null;
+        ByteArrayOutputStream output = new ByteArrayOutputStream();
+        ImageIO.write((RenderedImage) image, "png", output);
+        DatatypeConverter.printBase64Binary(output.toByteArray());
+        encoded = DatatypeConverter.printBase64Binary(output.toByteArray());
+        return encoded;
+    }
+    
+    public static Image convertBase64StringToImage(String encoded){                         // test function for decoding encoded Image
+        //System.out.println(encoded);
+        byte[] bytes = encoded.getBytes();
+        ByteArrayInputStream input = new ByteArrayInputStream(Base64.getDecoder().decode(encoded));
+        Image image;
+        try{
+            image = ImageIO.read(input);
+        }catch(IOException ex){
+            System.out.println("Catched IOException");
+            return null;
+        }
+        return image;
     }
 }

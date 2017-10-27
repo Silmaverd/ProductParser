@@ -11,8 +11,6 @@ public class ProductParser {
         ArrayList products = null;
         try{
             products = strategy.getItemsFromAllPages(address);
-        }catch(MalformedURLException ex){
-            System.out.println("Malformed URL: " + address.toString());
         }catch(IOException ex){
             
         }
