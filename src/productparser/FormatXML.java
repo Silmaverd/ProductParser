@@ -8,7 +8,7 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 
-public class XMLHandler implements FileFormatStrategy{
+public class FormatXML implements FileFormatStrategy{
     
     @Override
     public void writeObjectToFile(Object o) {
@@ -19,9 +19,9 @@ public class XMLHandler implements FileFormatStrategy{
             jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
             jaxbMarshaller.marshal(o, accessor.getFileOutputStream());
         } catch (JAXBException ex) {
-            Logger.getLogger(XMLHandler.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FormatXML.class.getName()).log(Level.SEVERE, null, ex);
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(XMLHandler.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FormatXML.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         

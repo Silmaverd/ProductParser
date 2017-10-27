@@ -15,8 +15,6 @@ public class MainClass {
         ProductParser parser = new ProductParser();
         ArrayList<Item> products = parser.ParseProducts(new ServiceCeneoReader(), address);
         
-        XMLHandler xmlHander = new XMLHandler();
-        //xmlHander.writeObjectToFile(products.get(0));
-        xmlHander.writeListToFile(products);
+        FileManager.writeListToFile(products, new FormatXML());
     }
 }
