@@ -14,9 +14,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.xml.bind.DatatypeConverter;
 
-public class ImageConverter {
+public class ImageConverter {                                                   // The class provides functions for image convertions
     
-    public static void displayImage(Image img){                                 // test function displaying image in new Frame
+    public static void displayImage(Image img){                                 // Test function displaying image in new Frame
         JFrame testFrame = new JFrame();
         testFrame.setSize(500, 300);
         JLabel canvas = new JLabel();
@@ -27,7 +27,7 @@ public class ImageConverter {
         testFrame.setVisible(true);
     }
     
-    public static Image convertStringToImage(String url){
+    public static Image convertStringToImage(String url){                       // The functions returns an Image downloaded from the URL given in argument
         URL urlFromString = null;
         try{
             urlFromString = new URL(url);
@@ -38,7 +38,7 @@ public class ImageConverter {
         }
     }
     
-    public static Image convertURLToImage(URL url){
+    public static Image convertURLToImage(URL url){                             // The functions returns an Image downloaded from the URL given in argument
         Image image = null;
         try{
             image = ImageIO.read(url);
@@ -49,7 +49,7 @@ public class ImageConverter {
         }
     }
     
-    public static String convertImageToBase64String(Image image) throws IOException{
+    public static String convertImageToBase64String(Image image) throws IOException{        // The function converts Image given in argument to Base64-encoded string
         String encoded = null;
         ByteArrayOutputStream output = new ByteArrayOutputStream();
         ImageIO.write((RenderedImage) image, "png", output);
@@ -58,8 +58,7 @@ public class ImageConverter {
         return encoded;
     }
     
-    public static Image convertBase64StringToImage(String encoded){                         // test function for decoding encoded Image
-        //System.out.println(encoded);
+    public static Image convertBase64StringToImage(String encoded){                         // Test function for decoding encoded Image
         byte[] bytes = encoded.getBytes();
         ByteArrayInputStream input = new ByteArrayInputStream(Base64.getDecoder().decode(encoded));
         Image image;

@@ -8,19 +8,22 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 
-public class FormatXML implements FileFormatStrategy{
+public class FormatXML implements FileFormatStrategy{                                   // The class is strategy for saving data to file
+    FileAccessor accessor;
+    
+    public FormatXML(){                                                                 // Constructor gets the instance of file accessor
+        accessor = FileAccessor.getInstance();                                          // and sets the file type
+        accessor.setFileType(".xml");
+    }
     
     @Override
-    public void writeObjectToFile(Object o) {
-        FileAccessor accessor = FileAccessor.getInstance();             
+    public void writeObjectToFile(Object o) {                                           // Function saves single object to an XML file             
         try {
-            JAXBContext jaxbContext = JAXBContext.newInstance(Item.class);
+            JAXBContext jaxbContext = JAXBContext.newInstance(Item.class);              // Saving to XML uses the JAXB library
             Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
             jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
             jaxbMarshaller.marshal(o, accessor.getFileOutputStream());
         } catch (JAXBException ex) {
-            Logger.getLogger(FormatXML.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (FileNotFoundException ex) {
             Logger.getLogger(FormatXML.class.getName()).log(Level.SEVERE, null, ex);
         }
         
@@ -28,9 +31,13 @@ public class FormatXML implements FileFormatStrategy{
     }
 
     @Override
-    public void writeListToFile(ArrayList list) {
-        for(Object o: list){
-            writeObjectToFile(o);
+    public void writeListToFile(ArrayList list) {                                       // Function writes while ArrayList to an XML File              
+        try{
+            for(Object o: list){
+                writeObjectToFile(o);
+            }
+        }catch(NullPointerException ex){                                                // In case the list was damaged break the loop
+            System.out.println("Error while reading product list");                     // i.e. due to error while reading the data
         }
     }
     

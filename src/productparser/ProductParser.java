@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class ProductParser {
+public class ProductParser {                                                        // The class is responsible for supporting given strategy
 
     public ArrayList ParseProducts(ServiceStrategy strategy, URL address){
         ArrayList products = null;

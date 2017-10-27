@@ -47,5 +47,5 @@ Temporary Items
 .apdisk
 /build/
 /dist/
-#products.xml
+products.xml
 /test/
