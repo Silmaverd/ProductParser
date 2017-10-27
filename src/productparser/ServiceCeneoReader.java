@@ -63,7 +63,7 @@ public class ServiceCeneoReader implements ServiceStrategy{
                 page_nr++;                                                                            
             }
         }catch(HttpStatusException endingException){                                            // catch the end of the searching
-            
+            System.out.println("Combined data from "+ Integer.toString(page_nr+1) +" pages.");
         }
         return combined;
     }

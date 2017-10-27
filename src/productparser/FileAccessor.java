@@ -7,9 +7,15 @@ import java.io.FileOutputStream;
 public class FileAccessor {
     private File file;
     private static FileAccessor instance = null;
+    private FileOutputStream fileOutStream;
 
     private FileAccessor() {
-        file = new File("products.xml");
+        try{
+            file = new File("products.xml");
+            fileOutStream = new FileOutputStream(file, true);
+        }catch(FileNotFoundException ex){
+            
+        }
     }
     
     public static FileAccessor getInstance(){
@@ -18,9 +24,8 @@ public class FileAccessor {
         }else return instance;
     }
     
-    public FileOutputStream getFileOutputStream() throws FileNotFoundException{
-        FileOutputStream fos = new FileOutputStream(file, true);
-        return fos;
+    public FileOutputStream getFileOutputStream(){
+        return fileOutStream;
     }
     
     public File getFile(){
