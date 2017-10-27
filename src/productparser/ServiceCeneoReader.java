@@ -38,7 +38,6 @@ public class ServiceCeneoReader implements ServiceStrategy{                     
             
         Image img = ImageConverter.convertStringToImage(imageURL);
         Item newItem = new Item(title, Double.parseDouble(price.replaceAll(",", ".")) , ImageConverter.convertImageToBase64String(img));
-        System.out.println(newItem);
         return newItem;
     }
     
@@ -52,7 +51,6 @@ public class ServiceCeneoReader implements ServiceStrategy{                     
         
         Image img = ImageConverter.convertStringToImage(imageURL);
         Item newItem = new Item(title, Double.parseDouble(price.replaceAll(",", ".")) , ImageConverter.convertImageToBase64String(img));
-        System.out.println(newItem);
         return newItem;
     }
     
