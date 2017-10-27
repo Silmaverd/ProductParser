@@ -1,6 +1,5 @@
 package productparser;
 
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -12,8 +11,7 @@ public class FormatXML implements FileFormatStrategy{                           
     FileAccessor accessor;
     
     public FormatXML(){                                                                 // Constructor gets the instance of file accessor
-        accessor = FileAccessor.getInstance();                                          // and sets the file type
-        accessor.setFileType(".xml");
+        accessor = FileAccessor.getInstance(".xml");                                    // and sets the file type
     }
     
     @Override
